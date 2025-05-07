@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="mqtt_dashboard" name="MQTT Dashboard">
+        <t t-call="web.layout">
+            <t t-set="title">MQTT Dashboard</t>
+
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+
+            <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Live MQTT Value</h1>
+                <div class="bg-white shadow rounded-xl px-6 py-4">
+                    <p class="text-gray-600">Latest Value reading:</p>
+                    <h2 id="mqtt-value" class="text-3xl font-semibold text-indigo-600">--</h2>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                async function fetchMqttValue() {
+                    try {
+                        const res = await fetch("/mqtt/value");
+                        const data = await res.json();
+                        document.getElementById("mqtt-value").innerText = data.value ?? "--";
+                    } catch (err) {
+                        console.error("Failed to fetch MQTT value:", err);
+                    }
+                }
+
+                setInterval(fetchMqttValue, 3000);
+                fetchMqttValue();
+            </script>
+        </t>
+    </template>
+</odoo>

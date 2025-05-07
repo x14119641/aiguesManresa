@@ -7,7 +7,8 @@
     'category': 'Tools',
     'license': 'LGPL-3',
     'depends': ['base'],
-    'data': [],
+    'data': [
+        'views/mqtt_dashboard.xml',],
     'installable': True,
     'application': False,
 }

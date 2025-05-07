@@ -24,3 +24,18 @@ pip install python-ldap
 # Remove python-ldap from odoo/requirementesand
 pip install -r odoo/requirements.txt
 ```
+
+
+## 5. Test appplication
+```
+# Test odoo
+./odoo/odoo-bin -c odoo.conf -d postgres --dev=all
+# Initialize db (need to do this at the beggining!)
+./odoo/odoo-bin -c odoo.conf -d postgres -i base
+# To register
+./odoo/odoo-bin -c odoo.conf -d postgres -i manresa_demo --dev=all
+```
+
+
+Then visit http://localhost:8069/
+Then visit http://localhost:8069/mqtt/dashboard

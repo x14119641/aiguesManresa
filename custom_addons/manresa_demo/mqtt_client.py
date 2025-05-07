@@ -10,7 +10,8 @@ latest_value = {"message": None}
 
 def on_connect(client, userdata, flags, rc):
     _logger.info(f"Connected to MQTT broker wit result code {str(rc)}")
-    client.subscribe("/counter")
+    # client.subscribe("/counter")
+    client.subscribe("counter/value") # In my case
 
 
 def on_message(client, userdata, msg):
