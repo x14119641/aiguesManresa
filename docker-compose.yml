@@ -1,0 +1,32 @@
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: mosquitto
+      POSTGRES_PASSWORD: 2024.PERTE
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  odoo:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8070:8069"
+    volumes:
+      - ./odoo:/app/odoo
+      - ./custom_addons:/app/custom_addons
+    environment:
+      - DB_HOST=10.8.21.61
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=mosquitto
+      - DB_PASSWORD=2024.PERTE
+
+volumes:
+  db-data:
