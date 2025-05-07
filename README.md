@@ -37,5 +37,8 @@ pip install -r odoo/requirements.txt
 ```
 
 
+
+Achiviment: Show counter
+
 Then visit http://localhost:8069/
 Then visit http://localhost:8069/mqtt/dashboard
